@@ -1,0 +1,8 @@
+{
+    "configuration": "cpu=atmega328",
+    "board": "arduino:avr:nano",
+    "sketch": "fan_rgb_teamanim.ino",
+    "output": "../tempbuilds/fan_rgb_teamanim",
+    "port": "COM4",
+    "programmer": "avrisp"
+}

@@ -17,7 +17,7 @@ const CRGB ORANGE_GRADIENT   = CRGB(220,  25,   0);
 const CRGB ORANGE_GRADIENT_2 = CRGB(225,  35,   0);
 
 // Config - Text data
-const bool SHOW_TEXT = true;
+const bool SHOW_TEXT = false;
 const bool INVERT_TEXT = false;
 const bool TEXT_DATA[48] = {
   1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1,

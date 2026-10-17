@@ -4,5 +4,5 @@
     "sketch": "fan_rgb_teamanim.ino",
     "output": "../tempbuilds/fan_rgb_teamanim",
     "port": "COM4",
-    "programmer": "avrisp"
+    "programmer": "arduinoasisp"
 }

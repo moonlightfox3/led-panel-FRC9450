@@ -2,7 +2,6 @@
 #include <FastLED.h>
 
 // Defined in fan_rgb_teamanim.ino
-int NUM_LEDS;
 extern CRGB leds[];
 
 // Config - Options
@@ -16,23 +15,14 @@ const CRGB ORANGE            = CRGB(255,  17,   0);
 const CRGB ORANGE_GRADIENT   = CRGB(220,  25,   0);
 const CRGB ORANGE_GRADIENT_2 = CRGB(225,  35,   0);
 
-// Config - Text data
-const bool SHOW_TEXT = false;
-const bool INVERT_TEXT = false;
-const bool TEXT_DATA[48] = {
-  1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1,
-  1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1,
-  0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1
-};
-
 // Color array
 const int COLORS_SIZE = 10;
 CRGB COLORS[COLORS_SIZE];
 
 // Vars
 int offset = 0;
-int start;
-int end;
+int start = 0;
+int end = 0;
 
 void addReversedColors(int startIndex) { // a,b,c,d,e,f -> a,b,c,d,e,f,e,d,c,b
   for (int i = startIndex - 2; i >= 1; i--) {
@@ -63,19 +53,16 @@ double teamanim_setup(int numLeds) {
   reverseColors(COLORS_SIZE);
 
   // Vars
-  NUM_LEDS = numLeds;
   start = 0;
-  end = NUM_LEDS - 1;
+  end = numLeds - 1;
   return FRAMERATE;
 }
 void teamanim() {
   int ledOffset = COLORS_SIZE - ((end + 1 - start) % COLORS_SIZE); // Used to start the animation at the correct place
   for (int led = end; led >= start; led--) {
     int colorIndex = (offset + ledOffset) % COLORS_SIZE;
+    leds[led] = COLORS[colorIndex];
     ledOffset++;
-    
-    if (SHOW_TEXT && INVERT_TEXT == TEXT_DATA[led]) leds[led] = CRGB::Black; // Show text
-    else leds[led] = COLORS[colorIndex];
   }
   offset = (offset + 1) % COLORS_SIZE; // Update offset
 }
